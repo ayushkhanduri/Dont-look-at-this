@@ -12,7 +12,7 @@ app.config(function($stateProvider,$urlRouterProvider){
         url: '/login',
         template: 'home/login.html',
         controller: function(noshit,$state){
-            if(noshit){
+            if(noshit.data.length > 0){ //CHANGING ROUTE ON THE BASIS OF DATA RECEIVED
                 $state.go('home');
             }
         	console.log("Controller of login");
@@ -20,7 +20,8 @@ app.config(function($stateProvider,$urlRouterProvider){
         },
         resolve: {
         	noshit: function($http){
-        		return $http.get("/getsomedata");
+        		return $http.get("/getsomedata?showData=false"); //IF YOU PASS TRUE , IT WILL GIVE AN ARRAY , 
+                //IF FALSE THEN AN EMPTY ARRAY IS RETURNED
         	}
         }
     })
