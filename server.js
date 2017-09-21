@@ -7,10 +7,7 @@ app.set(path.join(__dirname));
 app.set('view engine', 'ejs');
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.get('/',function(req,res){
-	
-	res.render('./index.ejs');
-})
+
 
 app.get('/getsomedata',function(req,res){
 	const url_parts = url.parse(req.url, true);
@@ -21,6 +18,10 @@ app.get('/getsomedata',function(req,res){
 	}
 	else
 		res.json([]);
+})
+
+app.get('/*',function(req,res){
+	res.render('./index.ejs');
 })
 app.listen("3000",()=>{
 	console.log("listening to port ");
